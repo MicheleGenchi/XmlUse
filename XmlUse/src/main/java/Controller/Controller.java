@@ -1,14 +1,14 @@
 package Controller;
 
 import java.io.File;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
 import DAO.DaoXmlFile;
 import Model.AppuntamentiWrapper;
 import Model.Appuntamento;
@@ -31,9 +31,9 @@ public class Controller {
 		boolean success=dao.salva(file, ps);
 		
 		if (success) 
-			LOGGER.warning("Scrittura paziente");
+			LOGGER.warning("Scrittura sul file pazienti.xml");
 		else
-			LOGGER.config("Scrittura paziente fallita! ");
+			LOGGER.config("Scrittura sul file pazienti.xml fallita! ");
 	}
 
 	public List<Paziente> leggi_Pazienti() {
@@ -55,9 +55,9 @@ public class Controller {
 		boolean success=dao.salva(file, apps);
 		
 		if (success) 
-			LOGGER.warning("Scrittura appuntamento");
+			LOGGER.warning("Scrittura su file appuntamenti.xml");
 		else
-			LOGGER.config("Scrittura appuntamento fallita! ");
+			LOGGER.config("Scrittura su file appuntamenti.xml fallita! ");
 	}
 	
 	public List<Appuntamento> leggi_Appuntamenti() {
@@ -68,12 +68,21 @@ public class Controller {
 			LOGGER.config("non ci sono appuntamenti");	
 		return apps.getLista();
 	}
+
+	private boolean confrontoDate(GregorianCalendar data1, GregorianCalendar data2) {
+		boolean sameYear = data1.get(Calendar.YEAR) == data2.get(Calendar.YEAR);
+        boolean sameMonth = data1.get(Calendar.MONTH) == data2.get(Calendar.MONTH);
+        boolean sameDay = data1.get(Calendar.DAY_OF_MONTH) == data2.get(Calendar.DAY_OF_MONTH);
+        return (sameDay && sameMonth && sameYear);
+	}
+	
 	
 	@XmlSchemaType(name = "data")
 	@XmlJavaTypeAdapter(GregorianCalendarAdapter.class) 
 	public List<Appuntamento> appuntamentiPerData(GregorianCalendar data) {
 		List<Appuntamento> filter=null;
-		filter=leggi_Appuntamenti().stream().filter(a->(a.getData().equals(data))).collect(Collectors.toList());
+		filter=leggi_Appuntamenti().stream().filter(a -> 
+			confrontoDate(a.getData(), data)).collect(Collectors.toList());	
 		return filter;
 	}
 	

@@ -12,12 +12,6 @@
 			<artifactId>jaxb-api</artifactId>
 			<version>2.3.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/net.sf.automatic-report-generator/xls-generator -->
-		<dependency>
-			<groupId>net.sf.automatic-report-generator</groupId>
-			<artifactId>xls-generator</artifactId>
-			<version>v1.0</version>
-		</dependency>
 	</dependencies>
 		<build>
 		<plugins>
