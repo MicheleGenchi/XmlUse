@@ -7,12 +7,12 @@ import java.util.GregorianCalendar;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-public class AppuntamentoAdapter extends XmlAdapter<String, GregorianCalendar> {
+public class DataDiNascitaAdapter extends XmlAdapter<String, GregorianCalendar> {
 
 	@Override
 	public GregorianCalendar unmarshal(String v) throws Exception {
 		GregorianCalendar gc=new GregorianCalendar();
-		DateFormat format = new SimpleDateFormat("EEEE dd/MM/yyyy  HH:mm");
+		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = format.parse(v);
 		gc.setTime(date);
 		return gc;
@@ -21,7 +21,7 @@ public class AppuntamentoAdapter extends XmlAdapter<String, GregorianCalendar> {
 	@Override
 	public String marshal(GregorianCalendar v) throws Exception {
 		// TODO Auto-generated method stub
-		return new SimpleDateFormat("EEEE dd/MM/yyyy  HH:mm").format(v.getTime());
+		return new SimpleDateFormat("dd/MM/yyyy").format(v.getTime());
 	}
 
 }

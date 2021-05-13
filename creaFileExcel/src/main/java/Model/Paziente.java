@@ -1,7 +1,5 @@
 package Model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -17,7 +15,7 @@ public class Paziente {
 	private String nome;
 	private String cognome;
 	
-	@XmlJavaTypeAdapter(GregorianCalendarAdapter.class)
+	@XmlJavaTypeAdapter(DataDiNascitaAdapter.class)
 	private GregorianCalendar dataDiNascita;
 	
 	public Paziente() {
@@ -68,7 +66,7 @@ public class Paziente {
 		StringBuilder builder = new StringBuilder();
 		try {
 			builder.append("Paziente [id=").append(id).append(", nome=").append(nome).append(", cognome=").append(cognome).append(", dataDiNascita=")
-					.append(new GregorianCalendarAdapter().marshal(dataDiNascita)).append("]");
+					.append(new DataDiNascitaAdapter().marshal(dataDiNascita)).append("]");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

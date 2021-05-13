@@ -1,6 +1,5 @@
 package Model;
 
-import java.io.File;
 import java.util.GregorianCalendar;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,15 +7,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import DAO.DaoXmlFile;
-
 @XmlType(propOrder={"idPaziente","data"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Appuntamento {
 	
 	private int idPaziente;
 	
-	@XmlJavaTypeAdapter(AppuntamentoAdapter.class)                         
+	@XmlJavaTypeAdapter(GregorianCalendarAdapter.class)                         
 	private GregorianCalendar data;
 	
 	public Appuntamento() {
@@ -47,12 +44,7 @@ public class Appuntamento {
 		this.data = data;
 	}
 	
-	public Paziente getPaziente(File filePazienti, int id) {
-		DaoXmlFile<PazientiWrapper> dao=new DaoXmlFile<>();
-		PazientiWrapper ps = dao.carica(filePazienti, PazientiWrapper.class);
-		return ps.ricercaPerId(id);
-	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

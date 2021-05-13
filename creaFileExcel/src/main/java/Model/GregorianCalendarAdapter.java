@@ -12,7 +12,7 @@ public class GregorianCalendarAdapter extends XmlAdapter<String, GregorianCalend
 	@Override
 	public GregorianCalendar unmarshal(String v) throws Exception {
 		GregorianCalendar gc=new GregorianCalendar();
-		DateFormat format = new SimpleDateFormat("EEEE dd/MM/yyyy");
+		DateFormat format = new SimpleDateFormat("EEEE dd/MM/yyyy HH:mm");
 		Date date = format.parse(v);
 		gc.setTime(date);
 		return gc;
@@ -21,7 +21,7 @@ public class GregorianCalendarAdapter extends XmlAdapter<String, GregorianCalend
 	@Override
 	public String marshal(GregorianCalendar v) throws Exception {
 		// TODO Auto-generated method stub
-		return new SimpleDateFormat("EEEE dd/MM/yyyy").format(v.getTime());
+		return new SimpleDateFormat("EEEE dd/MM/yyyy HH:mm").format(v.getTime());
 	}
 
 }
