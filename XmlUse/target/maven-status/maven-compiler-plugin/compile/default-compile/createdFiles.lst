@@ -1,0 +1,12 @@
+DAO\DaoXmlFile.class
+Model\Wrapper.class
+Model\PazientiWrapper.class
+Model\DataDiNascitaAdapter.class
+Model\Appuntamento.class
+Controller\Controller.class
+Model\Paziente.class
+Model\AppuntamentiWrapper.class
+DAO\Dao.class
+Main\Main.class
+Model\Format.class
+Model\GregorianCalendarAdapter.class
